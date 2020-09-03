@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from data import games;
 
 # Resolve plays as games with the 'play' type and set its columns.
-plays = games[games[type] == 'play'];
+plays = games[games['type'] == 'play'];
 plays.columns = ['type', 'inning', 'team', 'player', 'count', 'pitches', 'event', 'game_id', 'year'];
 
 # Resolve hits.
