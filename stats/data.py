@@ -3,19 +3,22 @@ import glob;
 import pandas as pd;
 
 # Assemble the path to the game files.
-gameFilesPath = os.path.join(os.getcwd(), 'games', '*.EVE')
+#gameFilesPath = os.path.join(os.getcwd(), 'games', '*.EVE');
 
 # Retrieve the game files in the game files path.  
-gameFiles = glob.glob(gameFilesPath);
+#gameFiles = glob.glob(gameFilesPath);
+
+# Fix because pluralsight tests have to be exact.
+game_files = glob.glob(os.path.join(os.getcwd(), 'games', '*.EVE'));
 
 # Sort the game files.
-gameFiles.sort();
+game_files.sort();
 
 # Prep game frames.
 gameFrames = [];
 
 # Build game frames.
-for gameFile in gameFiles:
+for gameFile in game_files:
   # Retrieve the game frame of the game file.
   gameFrame = pd.read_csv(gameFile, names=['type', 'multi2', 'multi3', 'multi4', 'multi5', 'multi6', 'event']);
   
