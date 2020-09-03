@@ -18,7 +18,7 @@ pa = pa.groupby(['year', 'game_id', 'team']).size().reset_index(name='PA');
 events = events.set_index(['year', 'game_id', 'team', 'event_type']);
 
 # Unstack events using the new indices (seems to do a new group by).
-events.unstack().fillna(0).reset_index();
+events = events.unstack().fillna(0).reset_index();
 
 # Remove a level of column labels from events.
 events.columns = events.columns.droplevel();
@@ -45,7 +45,7 @@ defense.loc[:, 'year'] = pd.to_numeric(defense['year']);
 der = defense.loc[defense['year'] >= 1978, ['year', 'defense', 'DER']];
 
 # Reshape DER with a pivot on year to defense DER.
-der.pivot(index='year', columns='defense', values='DER');
+der = der.pivot(index='year', columns='defense', values='DER');
 
 # Add plot metadata.
 der.plot(x_compat=True, xticks=range(1978, 2018, 4), rot=45);
