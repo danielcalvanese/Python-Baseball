@@ -15,18 +15,18 @@ game_files = glob.glob(os.path.join(os.getcwd(), 'games', '*.EVE'));
 game_files.sort();
 
 # Prep game frames.
-gameFrames = [];
+game_frames = [];
 
 # Build game frames.
-for gameFile in game_files:
+for game_file in game_files:
   # Retrieve the game frame of the game file.
-  gameFrame = pd.read_csv(gameFile, names=['type', 'multi2', 'multi3', 'multi4', 'multi5', 'multi6', 'event']);
+  gameFrame = pd.read_csv(game_file, names=['type', 'multi2', 'multi3', 'multi4', 'multi5', 'multi6', 'event']);
   
   # Build game frame.
-  gameFrames.append(gameFrame);
+  game_frames.append(gameFrame);
 
 # Build games by concatenating game frames.
-games = pd.concat(gameFrames);
+games = pd.concat(game_frames);
 
 # Filter the column 'multi5' by replacing '??' with '' (using hint dataframe.loc[row condition, [columns]] = new value).  
 games.loc[games['multi5'] == '??', ['multi5']] = '';
