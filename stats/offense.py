@@ -10,7 +10,8 @@ plays.columns = ['type', 'inning', 'team', 'player', 'count', 'pitches', 'event'
 hits = plays.loc[plays['event'].str.contains('^(?:S(?!B)|D|T|HR)'), ['inning', 'event']];
 
 # Transform the inning column into a numeric type.
-hits = hits.loc[:, ['inning']].apply(pd.to_numeric);
+#hits = hits.loc[:, ['inning']].apply(pd.to_numeric); # Not sure why this causes errors later.
+hits.loc[:, 'inning'] = pd.to_numeric(hits.loc[:, 'inning'])
 
 # Build a dictionary of replacements mapping regular expressions to strings.
 replacements = {
@@ -33,7 +34,7 @@ hits = hits.groupby(['inning', 'hit_type']).size().reset_index(name='count');
 hits.loc[:, 'hit_type'] = pd.Categorical(hits.loc[:, 'hit_type'], ['single', 'double', 'triple', 'hr']);
 
 # Sort hits by inning and hit type.
-hits = hits.sort_values('inning', 'hit_type');
+hits = hits.sort_values(['inning', 'hit_type']);
 
 # Reshape hits with a pivot on inning to hit type count.
 hits = hits.pivot(index='inning', columns='hit_type', values='count');
