@@ -20,10 +20,10 @@ game_frames = [];
 # Build game frames.
 for game_file in game_files:
   # Retrieve the game frame of the game file.
-  gameFrame = pd.read_csv(game_file, names=['type', 'multi2', 'multi3', 'multi4', 'multi5', 'multi6', 'event']);
+  game_frame = pd.read_csv(game_file, names=['type', 'multi2', 'multi3', 'multi4', 'multi5', 'multi6', 'event']);
   
   # Build game frame.
-  game_frames.append(gameFrame);
+  game_frames.append(game_frame);
 
 # Build games by concatenating game frames.
 games = pd.concat(game_frames);
