@@ -41,7 +41,7 @@ identifiers = identifiers.fillna(method='ffill');
 identifiers.columns = ['game_id', 'year'];
 
 # Add the identifier column to games.  
-games = pd.concat([identifiers, games], axis=1, sort=False);
+games = pd.concat([games, identifiers], axis=1, sort=False);
 
 # Fill NaN values in games.
 games = games.fillna(' ');
