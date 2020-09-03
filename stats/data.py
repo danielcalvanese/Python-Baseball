@@ -46,7 +46,7 @@ games = pd.concat([games, identifiers], axis=1, sort=False);
 # Fill NaN values in games.
 games = games.fillna(' ');
 
-# Optomize the type column in games by changing it to be categorical.
+# Optimize the type column in games by changing it to be categorical.
 games.loc[:, 'type'] = pd.Categorical(games.loc[:, 'type']);
 
 # Print the first five games.
